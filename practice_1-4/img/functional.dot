@@ -1,0 +1,5 @@
+digraph{rankdir=LR; node [fontname="DejaVu Sans", fontsize=11]; edge [fontname="DejaVu Sans", fontsize=9]; node[shape=box,style="rounded,filled",fillcolor="#fde68a"];
+ui[label="Интерфейс\n(консоль / формы)",fillcolor="#dbeafe"]; svc[label="TourOperator\n(сервисный слой)"]; val[label="Проверка\nданных"]; rep[label="Отчёты"]; store[label="Хранилище\nSQLite / JSON",shape=cylinder,fillcolor="#e5e7eb"]; csv[label="sales.csv",shape=note,fillcolor="#ffffff"];
+ui->svc[label="команда + параметры"]; svc->val[label="поля карточки"]; val->svc[label="ошибка / ОК"];
+svc->store[label="INSERT/UPDATE"]; store->svc[label="записи"]; svc->rep[label="путёвки, отзывы"]; rep->ui[label="таблица отчёта"]; rep->csv[label="реестр продаж"];
+}

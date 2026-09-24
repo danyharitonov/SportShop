@@ -1,0 +1,7 @@
+digraph{rankdir=TB; node [fontname="DejaVu Sans", fontsize=11]; edge [fontname="DejaVu Sans", fontsize=9]; node[shape=box,style=filled,fillcolor="#f8fafc"]; edge[arrowhead=none];
+a[label="Отчёт о загрузке",fillcolor="#fde68a"]; a->{h b t};
+h[label="Заголовок\n(период)"]; b[label="Тело отчёта"]; t[label="Итог"];
+b->tour[label=""]; tour[label="Строка тура  *"]; tour->{n s p};
+n[label="Название"]; s[label="Мест продано /\nвсего"]; p[label="Загрузка"];
+p->{hi lo}; hi[label="≥ 80 %  o\n«высокая»"]; lo[label="< 80 %  o\n«нужна реклама»"];
+}

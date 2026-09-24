@@ -1,0 +1,12 @@
+digraph{rankdir=TB; node[shape=record,fontname="DejaVu Sans Mono",fontsize=9,style=filled,fillcolor="#fffbeb"]; edge[fontname="DejaVu Sans",fontsize=9];
+TO[label="{TourOperator|name\ltours: dict\lclients: dict\lvouchers: list\l|add_tour()\ladd_quota()\lpublish() / cancel()\lfind_tours()\lsell() / refund()\lleave_review()\lload_report()\lrevenue()\lexport_sales()\l}"];
+T[label="{Tour|tour_id, title\ldestination, kind\ldate_from, date_to\lprice «property»\lstatus: TourStatus\l|nights\lseats_left\lload_percent\ltake_seats()\lreturn_seats()\l}"];
+Q[label="{Quota|partner\lseats_total\lseats_left\l}"];
+M[label="{Manager|manager_id\lfull_name\lphone\l}"];
+C[label="{Client|client_id\lfull_name «property»\lpassport «property»\lphone\l}"];
+V[label="{Voucher|number\lseats, amount\lpaid\l|status\lcalc_amount()\lpay()\l}"];
+R[label="{Review|rating 1..5\ltext\l}"];
+E1[label="{«enum» TourStatus|черновик, в продаже,\lраспродан, проводится,\lзавершён, отменён\l}",fillcolor="#eef2ff"];
+TO->T[arrowhead=diamond,dir=back,label="1..*"]; TO->C[arrowhead=diamond,dir=back,label="0..*"]; TO->V[arrowhead=diamond,dir=back,label="0..*"];
+T->Q[arrowhead=diamond,dir=back,label="1..*"]; T->M[label="ответственный"]; V->T; V->C; V->R[label="0..1"]; T->E1[style=dashed];
+}

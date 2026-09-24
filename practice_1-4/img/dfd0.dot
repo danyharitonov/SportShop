@@ -1,0 +1,9 @@
+digraph{rankdir=LR; node [fontname="DejaVu Sans", fontsize=11]; edge [fontname="DejaVu Sans", fontsize=9];
+sys[shape=circle,label="0\nИС «ТурОфис»",style=filled,fillcolor="#fde68a",width=1.6];
+node[shape=box,style=filled,fillcolor="#dbeafe"];
+cl[label="Клиент"]; pt[label="Партнёры\n(гостиницы,\nперевозчики)"]; dir[label="Директор"]; acc[label="Бухгалтерия"]; tax[label="Налоговая,\nРосстат"];
+cl->sys[label="заявка, оплата,\nотзыв"]; sys->cl[label="путёвка, чек"];
+pt->sys[label="подтверждение\nквоты, отчёт"]; sys->pt[label="запрос брони"];
+sys->dir[label="отчёты о загрузке"]; dir->sys[label="утверждение тура"];
+sys->acc[label="реестр продаж (CSV)"]; acc->tax[label="отчётность"];
+}

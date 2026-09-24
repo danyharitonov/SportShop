@@ -1,0 +1,9 @@
+digraph{rankdir=TB; node [fontname="DejaVu Sans", fontsize=11]; edge [fontname="DejaVu Sans", fontsize=9]; node[shape=box,style=filled,fillcolor="#f8fafc"]; edge[arrowsize=0.7];
+m[label="Оформить_путёвку",fillcolor="#fde68a"];
+m->f[label="tour_id ○→\n← ● tour"]; f[label="Найти_тур"];
+m->c[label="данные ○→\n← ● client"]; c[label="Найти_или_создать\n_клиента"];
+m->q[label="tour, seats ○→\n← ● ok"]; q[label="Проверить_квоту"];
+m->w[label="voucher ○→"]; w[label="Сохранить_путёвку"];
+m->r[label="квота, seats ○→"]; r[label="Списать_места"];
+c->v[label="паспорт ○→\n← ● valid"]; v[label="Проверить\n_паспорт",style="filled,diagonals"];
+}

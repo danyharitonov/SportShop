@@ -1,0 +1,7 @@
+digraph{rankdir=LR; node [fontname="DejaVu Sans", fontsize=11]; edge [fontname="DejaVu Sans", fontsize=9]; node[shape=ellipse,style=filled,fillcolor="#e0f2fe"];
+s[shape=point,width=0.2]; s->draft;
+draft[label="Черновик"]; sale[label="В продаже"]; sold[label="Распродан"]; run[label="Проводится"]; done[label="Завершён"]; cancel[label="Отменён",fillcolor="#fecaca"];
+draft->sale[label="publish()\n[есть квота]"]; sale->sold[label="остаток = 0"]; sold->sale[label="возврат путёвки"];
+sale->run[label="наступила date_from"]; sold->run[label="наступила date_from"]; run->done[label="date_to прошла"];
+draft->cancel[label="cancel()"]; sale->cancel[label="cancel()\n[форс-мажор]"];
+}

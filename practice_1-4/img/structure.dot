@@ -1,0 +1,8 @@
+digraph{rankdir=TB; node [fontname="DejaVu Sans", fontsize=11]; edge [fontname="DejaVu Sans", fontsize=9]; node[shape=box,style=filled,fillcolor="#f1f5f9"];
+root[label="ИС «ТурОфис»",fillcolor="#fde68a"];
+a[label="Подсистема\nавторизации"]; b[label="Подсистема\nформирования туров"]; c[label="Подсистема\nпродаж"]; d[label="Подсистема\nотзывов"]; e[label="Подсистема\nотчётности"];
+root->{a b c d e};
+b->{b1[label="Направления"] b2[label="Туры"] b3[label="Квоты"]};
+c->{c1[label="Клиенты"] c2[label="Путёвки"] c3[label="Оплаты"]};
+e->{e1[label="Загрузка туров"] e2[label="Выручка"] e3[label="Экспорт CSV"]};
+}

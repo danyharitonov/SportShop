@@ -1,0 +1,8 @@
+digraph{rankdir=LR; node[fontname="DejaVu Sans",fontsize=10,shape=note,style=filled,fillcolor="#ffffff"]; edge[fontname="DejaVu Sans",fontsize=9];
+subgraph cluster_c{label="Клиент";style=filled;fillcolor="#fce7f3"; z[label="Заявка"]; pay[label="Платёж"]; an[label="Анкета-отзыв"];}
+subgraph cluster_o{label="Офис продаж";style=filled;fillcolor="#dbeafe"; vou[label="Путёвка"]; chk[label="Чек"];}
+subgraph cluster_m{label="Менеджер тура";style=filled;fillcolor="#fef9c3"; prog[label="Программа тура"]; br[label="Запрос брони"];}
+subgraph cluster_p{label="Партнёры";style=filled;fillcolor="#dcfce7"; cf[label="Подтверждение квоты"]; rp[label="Отчёт посредника"];}
+subgraph cluster_b{label="Бухгалтерия / директор";style=filled;fillcolor="#f1f5f9"; reg[label="Реестр продаж"]; rep[label="Отчёт о загрузке"]; tax[label="Налоговая отчётность"];}
+prog->br->cf->vou; z->vou->chk; pay->chk; vou->reg->tax; an->rep; rp->rep; reg->rep;
+}

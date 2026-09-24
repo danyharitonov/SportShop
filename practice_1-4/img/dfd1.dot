@@ -1,0 +1,12 @@
+digraph{rankdir=LR; node [fontname="DejaVu Sans", fontsize=11]; edge [fontname="DejaVu Sans", fontsize=9];
+node[shape=box,style="rounded,filled",fillcolor="#fde68a"];
+p1[label="1. Формировать\nтур"]; p2[label="2. Бронировать\nквоты"]; p3[label="3. Оформить\nпутёвку"]; p4[label="4. Принять\nоплату"]; p5[label="5. Собрать\nотзывы"]; p6[label="6. Сформировать\nотчёты"];
+node[shape=record,style=filled,fillcolor="#e5e7eb"];
+d1[label="D1|Туры"]; d2[label="D2|Квоты"]; d3[label="D3|Клиенты"]; d4[label="D4|Путёвки"]; d5[label="D5|Отзывы"];
+node[shape=box,style=filled,fillcolor="#dbeafe"]; mt[label="Менеджер тура"]; cl[label="Клиент"]; pt[label="Партнёр"]; dir[label="Директор"];
+mt->p1[label="программа, даты"]; p1->d1; pt->p2[label="подтверждение"]; d1->p2; p2->d2;
+cl->p3[label="заявка"]; d1->p3; d2->p3[label="остаток"]; p3->d2[label="списание"]; p3->d3; p3->d4;
+cl->p4[label="оплата"]; p4->d4[label="статус"];
+cl->p5[label="анкета"]; d4->p5; p5->d5;
+d4->p6; d5->p6; d1->p6; p6->dir[label="отчёты"];
+}

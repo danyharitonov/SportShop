@@ -1,0 +1,8 @@
+digraph{rankdir=TB; node [fontname="DejaVu Sans", fontsize=11]; edge [fontname="DejaVu Sans", fontsize=9]; node[fontsize=10];
+st[shape=ellipse,label="Начало"]; in[shape=parallelogram,label="Ввод: tour_id, клиент, seats"];
+f[shape=diamond,label="Тур найден и\nв продаже?"]; q[shape=diamond,label="seats ≤\nостаток квоты?"];
+c[shape=box,label="Найти клиента по паспорту\nили создать нового"]; v[shape=box,label="amount = price × seats\n(скидка 5 % от 4 мест)"];
+w[shape=box,label="Создать путёвку,\nсписать места из квот"]; sold[shape=diamond,label="Остаток = 0?"]; ss[shape=box,label="Статус тура\n«Распродан»"];
+out[shape=parallelogram,label="Вывод: номер путёвки, сумма"]; err[shape=parallelogram,label="Вывод сообщения\nоб ошибке"]; en[shape=ellipse,label="Конец"];
+st->in->f; f->q[label="да"]; f->err[label="нет"]; q->c[label="да"]; q->err[label="нет"]; c->v->w->sold; sold->ss[label="да"]; sold->out[label="нет"]; ss->out; out->en; err->en;
+}
