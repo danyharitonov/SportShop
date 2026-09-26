@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+.venv/
+data/test_*.json
+data/orders.json
