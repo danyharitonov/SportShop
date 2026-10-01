@@ -19,6 +19,9 @@ CATALOG = [
      "price": 1890.0, "sizes": {183: 9}},
 ]
 
+import json
+from datetime import datetime
+
 DISCOUNT_RATE = 0.10        # скидка 10 % ...
 DISCOUNT_THRESHOLD = 1000   # ... на корзину от этой суммы
 
@@ -77,6 +80,37 @@ def cart_total(cart):
     if total >= DISCOUNT_THRESHOLD:
         total *= 1 - DISCOUNT_RATE
     return round(total, 2)
+
+
+def create_order(cart, client_name, products):
+    """US-4: заказ из корзины. Остатки списываются, корзина очищается."""
+    if not cart or not client_name.strip():
+        return None
+    for it in cart:
+        find_product(products, it["product_id"])["sizes"][it["size"]] -= it["qty"]
+    order = {
+        "number": datetime.now().strftime("SP-%Y%m%d-%H%M%S%f")[:-3],
+        "date": datetime.now().strftime("%Y-%m-%d %H:%M"),
+        "client": client_name.strip(),
+        "items": [dict(it) for it in cart],
+        "total": cart_total(cart),
+    }
+    cart.clear()
+    return order
+
+
+def save_orders(orders, filename="orders.json"):
+    with open(filename, "w", encoding="utf-8") as fh:
+        json.dump(orders, fh, ensure_ascii=False, indent=2)
+    return len(orders)
+
+
+def load_orders(filename="orders.json"):
+    try:
+        with open(filename, encoding="utf-8") as fh:
+            return json.load(fh)
+    except FileNotFoundError:
+        return []
 
 
 def count_by_category(products):
