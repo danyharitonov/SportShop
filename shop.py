@@ -79,6 +79,20 @@ def cart_total(cart):
     return round(total, 2)
 
 
+def count_by_category(products):
+    """US-5: словарь {категория: количество наименований}."""
+    counts = {}
+    for p in products:
+        counts[p["category"]] = counts.get(p["category"], 0) + 1
+    return counts
+
+
+def avg_price(products, category=None):
+    """US-6: средняя цена всего каталога или одной категории."""
+    prices = [p["price"] for p in products if category in (None, p["category"])]
+    return round(sum(prices) / len(prices), 2) if prices else 0
+
+
 def show_catalog(products):
     for p in products:
         stock = sum(p["sizes"].values())
