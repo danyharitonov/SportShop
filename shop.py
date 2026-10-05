@@ -23,7 +23,7 @@ import json
 from datetime import datetime
 
 DISCOUNT_RATE = 0.10        # скидка 10 % ...
-DISCOUNT_THRESHOLD = 1000   # ... на корзину от этой суммы
+DISCOUNT_THRESHOLD = 10000  # ... на корзину от этой суммы (было 1000 — опечатка)
 
 
 def find_product(products, product_id):
