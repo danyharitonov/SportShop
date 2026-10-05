@@ -124,6 +124,11 @@ def highlight_low_stock(products, limit=3):
     return [f"⚠ {p['name']} — осталось {sum(p['sizes'].values())}" for p in get_low_stock(products, limit)]
 
 
+def total_sum(products):
+    """US-7: сумма позиций с учётом количества."""
+    return sum(p["price"] * p["quantity"] for p in products)
+
+
 def count_by_category(products):
     """US-5: словарь {категория: количество наименований}."""
     counts = {}
