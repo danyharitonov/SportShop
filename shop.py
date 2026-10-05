@@ -125,8 +125,8 @@ def highlight_low_stock(products, limit=3):
 
 
 def total_sum(products):
-    """US-7: сумма цен позиций."""
-    return sum(p["price"] for p in products)
+    """US-7: сумма позиций с учётом количества (если quantity нет — 1 шт.)."""
+    return sum(p["price"] * p.get("quantity", 1) for p in products)
 
 
 def count_by_category(products):
