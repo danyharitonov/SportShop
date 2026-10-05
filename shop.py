@@ -113,6 +113,17 @@ def load_orders(filename="orders.json"):
         return []
 
 
+def get_low_stock(products, limit=3):
+    """US-1: товары, у которых суммарный остаток по всем размерам <= limit."""
+    low = [p for p in products if sum(p["sizes"].values()) <= limit]
+    return sorted(low, key=lambda p: sum(p["sizes"].values()))
+
+
+def highlight_low_stock(products, limit=3):
+    """Строки для консоли: «⚠ название — осталось N»."""
+    return [f"⚠ {p['name']} — осталось {sum(p['sizes'].values())}" for p in get_low_stock(products, limit)]
+
+
 def count_by_category(products):
     """US-5: словарь {категория: количество наименований}."""
     counts = {}
