@@ -129,6 +129,23 @@ def total_sum(products):
     return sum(p["price"] * p.get("quantity", 1) for p in products)
 
 
+def search_advanced(products, query="", category=None, min_price=None, max_price=None):
+    """US-2: комбинированный поиск. Любой фильтр можно не указывать."""
+    query = query.strip().lower()
+    result = []
+    for p in products:
+        if query and query not in p["name"].lower():
+            continue
+        if category is not None and p["category"].lower() != category.lower():
+            continue
+        if min_price is not None and p["price"] < min_price:
+            continue
+        if max_price is not None and p["price"] > max_price:
+            continue
+        result.append(p)
+    return result
+
+
 def count_by_category(products):
     """US-5: словарь {категория: количество наименований}."""
     counts = {}
