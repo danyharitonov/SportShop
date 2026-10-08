@@ -67,6 +67,11 @@ def update_quantity(cart, products, product_id, size, new_qty):
     item = _position(cart, product_id, size)
     if item is None:
         return False, "Позиции нет в корзине"
+    if new_qty < 0:
+        return False, "Количество не может быть отрицательным"
+    if new_qty == 0:                      # исправление ПР №8: 0 = удалить позицию
+        cart.remove(item)
+        return True, "Позиция удалена"
     stock = find_product(products, product_id)["sizes"][size]
     if new_qty > stock:
         return False, f"На складе только {stock} шт."
